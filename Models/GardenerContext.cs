@@ -11,6 +11,7 @@ namespace GreenGarden.Models
         public GardenerContext(DbContextOptions<GardenerContext> options) : base(options) 
         { }
         public DbSet<Gardeners> Gardenership { get; set; }
+        public DbSet<TopCrop> TopCrops { get; set; }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
@@ -19,7 +20,7 @@ namespace GreenGarden.Models
                 {
                     ID = 1,
                     FirstName = "Freya",
-                    LastName = "Greene"
+                    LastName = "Greene",
                 },
                 new Gardeners
                 {
@@ -35,6 +36,26 @@ namespace GreenGarden.Models
                     LastName = "Greene"
                 }
 
+            );
+            modelBuilder.Entity<TopCrop>().HasData(
+                new TopCrop
+                {
+                    CropId = 1,
+                    Name = "Eggplant",
+                    Description = "Native to Asia. Part of the nightshade family."
+                },
+                new TopCrop
+                {
+                    CropId = 2,
+                    Name = "Tomato",
+                    Description = "Part of the nightshade family. Native to the Andes of South America, around Peru."
+                },
+                new TopCrop
+                {
+                    CropId = 3,
+                    Name = "Potato",
+                    Description = "Part of the nightshade family. Native to the Andes of South America."
+                }
             );
         }
     }
