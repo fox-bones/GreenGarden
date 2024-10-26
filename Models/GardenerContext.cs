@@ -21,6 +21,7 @@ namespace GreenGarden.Models
                     ID = 1,
                     FirstName = "Freya",
                     LastName = "Greene",
+                    Email = "freyaplaya@gmail.com"
                 },
                 new Gardeners
                 {
@@ -33,7 +34,8 @@ namespace GreenGarden.Models
                 {
                     ID = 3,
                     FirstName = "Luis",
-                    LastName = "Greene"
+                    LastName = "Greene",
+                    Email = "luisnotluis@gmail.com"
                 }
 
             );

@@ -21,7 +21,7 @@ namespace GreenGarden.Migrations
                     City = table.Column<string>(type: "nvarchar(30)", maxLength: 30, nullable: true),
                     State = table.Column<string>(type: "nvarchar(2)", maxLength: 2, nullable: true),
                     Zip = table.Column<string>(type: "nvarchar(10)", maxLength: 10, nullable: true),
-                    Email = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    Email = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     Cell = table.Column<string>(type: "nvarchar(max)", nullable: true)
                 },
                 constraints: table =>
@@ -32,7 +32,7 @@ namespace GreenGarden.Migrations
             migrationBuilder.InsertData(
                 table: "Gardenership",
                 columns: new[] { "ID", "Address", "Cell", "City", "Email", "FirstName", "GenderIdentity", "LastName", "State", "Zip" },
-                values: new object[] { 1, null, null, null, null, "Freya", null, "Greene", null, null });
+                values: new object[] { 1, null, null, null, "freyaplaya@gmail.com", "Freya", null, "Greene", null, null });
 
             migrationBuilder.InsertData(
                 table: "Gardenership",
@@ -42,7 +42,7 @@ namespace GreenGarden.Migrations
             migrationBuilder.InsertData(
                 table: "Gardenership",
                 columns: new[] { "ID", "Address", "Cell", "City", "Email", "FirstName", "GenderIdentity", "LastName", "State", "Zip" },
-                values: new object[] { 3, null, null, null, null, "Luis", null, "Greene", null, null });
+                values: new object[] { 3, null, null, null, "luisnotluis@gmail.com", "Luis", null, "Greene", null, null });
         }
 
         protected override void Down(MigrationBuilder migrationBuilder)

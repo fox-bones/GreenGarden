@@ -42,12 +42,14 @@ namespace GreenGarden.Migrations
                         .HasColumnType("nvarchar(30)");
 
                     b.Property<string>("Email")
+                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("FirstName")
                         .IsRequired()
                         .HasMaxLength(30)
-                        .HasColumnType("nvarchar(30)");
+                        .HasColumnType("nvarchar(30)")
+                        .HasColumnName("FirstName");
 
                     b.Property<int?>("GenderIdentity")
                         .HasColumnType("int");
@@ -55,7 +57,8 @@ namespace GreenGarden.Migrations
                     b.Property<string>("LastName")
                         .IsRequired()
                         .HasMaxLength(30)
-                        .HasColumnType("nvarchar(30)");
+                        .HasColumnType("nvarchar(30)")
+                        .HasColumnName("LastName");
 
                     b.Property<string>("State")
                         .HasMaxLength(2)
@@ -64,9 +67,8 @@ namespace GreenGarden.Migrations
                     b.Property<int?>("TopCropCropId")
                         .HasColumnType("int");
 
-                    b.Property<string>("Zip")
-                        .HasMaxLength(10)
-                        .HasColumnType("nvarchar(10)");
+                    b.Property<int?>("Zip")
+                        .HasColumnType("int");
 
                     b.HasKey("ID");
 
@@ -78,6 +80,7 @@ namespace GreenGarden.Migrations
                         new
                         {
                             ID = 1,
+                            Email = "freyaplaya@gmail.com",
                             FirstName = "Freya",
                             LastName = "Greene"
                         },
@@ -91,6 +94,7 @@ namespace GreenGarden.Migrations
                         new
                         {
                             ID = 3,
+                            Email = "luisnotluis@gmail.com",
                             FirstName = "Luis",
                             LastName = "Greene"
                         });
@@ -124,13 +128,13 @@ namespace GreenGarden.Migrations
                         new
                         {
                             CropId = 2,
-                            Description = "Part of the nightshade family.",
+                            Description = "Part of the nightshade family. Native to the Andes of South America, around Peru.",
                             Name = "Tomato"
                         },
                         new
                         {
                             CropId = 3,
-                            Description = "Part of the nightshade family.",
+                            Description = "Part of the nightshade family. Native to the Andes of South America.",
                             Name = "Potato"
                         });
                 });
