@@ -21,7 +21,7 @@ namespace GreenGarden.Controllers
         // GET: Gardeners
         public async Task<IActionResult> Index()
         {
-              return _context.Gardenership != null ?
+              return _context.Gardenership != null ? 
                           View(await _context.Gardenership.ToListAsync()) :
                           Problem("Entity set 'GardenerContext.Gardenership'  is null.");
         }

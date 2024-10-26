@@ -37,8 +37,8 @@ namespace GreenGarden.Models
         [Range(0000000000, 9999999999, ErrorMessage = "Zip must be 10 characters or less.")]
         public int? Zip {  get; set; }
         [DataType(DataType.EmailAddress)]
-        public string? Email {  get; set; }
         [Required]
+        public string Email {  get; set; }
         [DataType(DataType.PhoneNumber)]
         public string? Cell {  get; set; }
         [Display(Name = "Favorite Crop")]
