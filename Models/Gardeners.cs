@@ -1,6 +1,8 @@
-﻿using System;
+﻿using GreenGarden.Models;
+using System;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
+
 
 namespace GreenGarden.Models
 {
@@ -12,6 +14,7 @@ namespace GreenGarden.Models
     }
     public class Gardeners
     {
+        public ICollection<GardenersTopCrops> TopCrops { get; set; } = new List<GardenersTopCrops>();
         [Key]
         public int ID { get; set; }
 
@@ -27,6 +30,7 @@ namespace GreenGarden.Models
         [Display(Name = "Last Name")]
         [Column("LastName")]
         public string? LastName { get; set; }
+        [Display(Name = "Gender")]
         public Gender? GenderIdentity { get; set; }
         [StringLength(30, ErrorMessage = "Please enter your address within 50 characters, or less.")]
         public string? Address { get; set; }
@@ -38,7 +42,7 @@ namespace GreenGarden.Models
         public int? Zip {  get; set; }
         [DataType(DataType.EmailAddress)]
         [Required]
-        public string Email {  get; set; }
+        public string? Email {  get; set; }
         [DataType(DataType.PhoneNumber)]
         public string? Cell {  get; set; }
         [Display(Name = "Favorite Crop")]

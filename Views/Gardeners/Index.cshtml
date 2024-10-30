@@ -39,6 +39,9 @@
             <th>
                 @Html.DisplayNameFor(model => model.Cell)
             </th>
+            <th>
+                @Html.DisplayNameFor(Model => Model.TopCrop)
+            </th>
             <th></th>
         </tr>
     </thead>
@@ -71,6 +74,9 @@
             </td>
             <td>
                 @Html.DisplayFor(modelItem => item.Cell)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.TopCrop.Gardeners)
             </td>
             <td>
                 <a asp-action="Edit" asp-route-id="@item.ID">Edit</a> |

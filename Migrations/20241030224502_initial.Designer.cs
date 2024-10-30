@@ -12,14 +12,14 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace GreenGarden.Migrations
 {
     [DbContext(typeof(GardenerContext))]
-    [Migration("20241026203818_initial")]
+    [Migration("20241030224502_initial")]
     partial class initial
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
-                .HasAnnotation("ProductVersion", "6.0.33")
+                .HasAnnotation("ProductVersion", "6.0.35")
                 .HasAnnotation("Relational:MaxIdentifierLength", 128);
 
             SqlServerModelBuilderExtensions.UseIdentityColumns(modelBuilder, 1L, 1);
@@ -102,6 +102,52 @@ namespace GreenGarden.Migrations
                         });
                 });
 
+            modelBuilder.Entity("GreenGarden.Models.GardenersTopCrops", b =>
+                {
+                    b.Property<int>("ID")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("ID"), 1L, 1);
+
+                    b.Property<int>("CropId")
+                        .HasColumnType("int");
+
+                    b.Property<int>("GardenersID")
+                        .HasColumnType("int");
+
+                    b.Property<int?>("TopCropCropId")
+                        .HasColumnType("int");
+
+                    b.HasKey("ID");
+
+                    b.HasIndex("GardenersID");
+
+                    b.HasIndex("TopCropCropId");
+
+                    b.ToTable("GardenersTopCrops");
+
+                    b.HasData(
+                        new
+                        {
+                            ID = 1,
+                            CropId = 1,
+                            GardenersID = 1
+                        },
+                        new
+                        {
+                            ID = 2,
+                            CropId = 2,
+                            GardenersID = 2
+                        },
+                        new
+                        {
+                            ID = 3,
+                            CropId = 3,
+                            GardenersID = 1
+                        });
+                });
+
             modelBuilder.Entity("GreenGarden.Models.TopCrop", b =>
                 {
                     b.Property<int>("CropId")
@@ -148,6 +194,33 @@ namespace GreenGarden.Migrations
                         .HasForeignKey("TopCropCropId");
 
                     b.Navigation("TopCrop");
+                });
+
+            modelBuilder.Entity("GreenGarden.Models.GardenersTopCrops", b =>
+                {
+                    b.HasOne("GreenGarden.Models.Gardeners", "Gardeners")
+                        .WithMany("TopCrops")
+                        .HasForeignKey("GardenersID")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("GreenGarden.Models.TopCrop", "TopCrop")
+                        .WithMany("Gardeners")
+                        .HasForeignKey("TopCropCropId");
+
+                    b.Navigation("Gardeners");
+
+                    b.Navigation("TopCrop");
+                });
+
+            modelBuilder.Entity("GreenGarden.Models.Gardeners", b =>
+                {
+                    b.Navigation("TopCrops");
+                });
+
+            modelBuilder.Entity("GreenGarden.Models.TopCrop", b =>
+                {
+                    b.Navigation("Gardeners");
                 });
 #pragma warning restore 612, 618
         }

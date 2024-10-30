@@ -49,6 +49,32 @@ namespace GreenGarden.Migrations
                         principalColumn: "CropId");
                 });
 
+            migrationBuilder.CreateTable(
+                name: "GardenersTopCrops",
+                columns: table => new
+                {
+                    ID = table.Column<int>(type: "int", nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    CropId = table.Column<int>(type: "int", nullable: false),
+                    TopCropCropId = table.Column<int>(type: "int", nullable: true),
+                    GardenersID = table.Column<int>(type: "int", nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_GardenersTopCrops", x => x.ID);
+                    table.ForeignKey(
+                        name: "FK_GardenersTopCrops_Gardenership_GardenersID",
+                        column: x => x.GardenersID,
+                        principalTable: "Gardenership",
+                        principalColumn: "ID",
+                        onDelete: ReferentialAction.Cascade);
+                    table.ForeignKey(
+                        name: "FK_GardenersTopCrops_TopCrops_TopCropCropId",
+                        column: x => x.TopCropCropId,
+                        principalTable: "TopCrops",
+                        principalColumn: "CropId");
+                });
+
             migrationBuilder.InsertData(
                 table: "Gardenership",
                 columns: new[] { "ID", "Address", "Cell", "City", "Email", "FirstName", "GenderIdentity", "LastName", "State", "TopCropCropId", "Zip" },
@@ -69,14 +95,42 @@ namespace GreenGarden.Migrations
                     { 3, "Part of the nightshade family. Native to the Andes of South America.", "Potato" }
                 });
 
+            migrationBuilder.InsertData(
+                table: "GardenersTopCrops",
+                columns: new[] { "ID", "CropId", "GardenersID", "TopCropCropId" },
+                values: new object[] { 1, 1, 1, null });
+
+            migrationBuilder.InsertData(
+                table: "GardenersTopCrops",
+                columns: new[] { "ID", "CropId", "GardenersID", "TopCropCropId" },
+                values: new object[] { 2, 2, 2, null });
+
+            migrationBuilder.InsertData(
+                table: "GardenersTopCrops",
+                columns: new[] { "ID", "CropId", "GardenersID", "TopCropCropId" },
+                values: new object[] { 3, 3, 1, null });
+
             migrationBuilder.CreateIndex(
                 name: "IX_Gardenership_TopCropCropId",
                 table: "Gardenership",
+                column: "TopCropCropId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_GardenersTopCrops_GardenersID",
+                table: "GardenersTopCrops",
+                column: "GardenersID");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_GardenersTopCrops_TopCropCropId",
+                table: "GardenersTopCrops",
                 column: "TopCropCropId");
         }
 
         protected override void Down(MigrationBuilder migrationBuilder)
         {
+            migrationBuilder.DropTable(
+                name: "GardenersTopCrops");
+
             migrationBuilder.DropTable(
                 name: "Gardenership");
 
